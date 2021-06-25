@@ -4,6 +4,7 @@ const app = express();
 const handlebars = require("express-handlebars");
 const router = require("./routes");
 const PORT = 3000;
+const routes = require("./routes");
 app.use(express.static(path.join(__dirname, "public")));
 //Template engine
 app.engine(
@@ -12,14 +13,8 @@ app.engine(
     extname: ".hbs"
   })
 );
+routes(app);
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "resource/views"));
-
-app.get("/", (req, res) => {
-  res.render("home");
-});
-app.get("/news", (req, res) => {
-  res.render("news");
-});
 
 app.listen(PORT, () => console.log(`App listening at ${PORT}`));
