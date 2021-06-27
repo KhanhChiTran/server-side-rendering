@@ -5,7 +5,12 @@ const handlebars = require("express-handlebars");
 const router = require("./routes");
 const PORT = 3000;
 const routes = require("./routes");
+const db = require("./config/db");
+// Connect to db
+db.connect();
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 //Template engine
 app.engine(
   "hbs",
